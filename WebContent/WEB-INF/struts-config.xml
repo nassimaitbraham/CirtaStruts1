@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<!-- Form bean (Objet ActionForm form dans l'Action) qui contiendra les 
+		donnees saisie dans le formulaire html -->
+	<form-beans>
+		<form-bean name="loginForm" type="com.aitech.cirta.form.LoginForm" />
+	</form-beans>
+
+	<!-- Mapping entre les actions utilisateur et les actions struts -->
+	<action-mappings>
+		<action name="loginForm" path="/login"
+			type="com.aitech.cirta.action.LoginAction" scope="request" input="/login.jsp">
+			
+			<!-- Redirection sur la page login.jsp dans le cas ou la connection echoue -->
+			<forward name="failure" path="/jsp/login.jsp" redirect="true" />
+			
+			<!-- Redirection sur la page welcome jsp dans le cas ou le connection 
+				abouti -->
+			<forward name="success" path="/jsp/welcome.jsp" redirect="true" />
+		</action>
+	</action-mappings>
+
+</struts-config>
